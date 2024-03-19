@@ -1,18 +1,15 @@
 const router = require("express").Router();
 const {
   createWorkout,
-  getWorkout,
-  workoutByDate,
+  getUser,
+  getUsers,
   deleteWorkout,
   updateWorkout,
-  getWorkouts,
-} = require("../controller/workoutController");
+} = require("../controller/userController");
 
-router.get("/", getWorkouts);
+router.get("/", getUsers);
 
-router.get("/filter", workoutByDate);
-
-router.get("/:id", getWorkout);
+router.get("/:email", getUser);
 
 router.post("/", createWorkout);
 
