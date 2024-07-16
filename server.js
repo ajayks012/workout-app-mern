@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 const workoutRoutes = require("./routes/workouts.js");
+const userRoutes = require("./routes/users.js");
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -15,6 +16,8 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use("/", userRoutes);
+
 app.use("/workouts", workoutRoutes);
 
 mongoose
@@ -25,4 +28,4 @@ mongoose
       console.log("running on port " + process.env.PORT);
     });
   })
-  .catch((err) => console.log(err));
+  .catch((err) => console.log("not connected", err));
