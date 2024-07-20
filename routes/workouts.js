@@ -7,6 +7,9 @@ const {
   updateWorkout,
   getWorkouts,
 } = require("../controller/workoutController");
+const requireAuth = require("../middleware/requireAuth");
+
+router.use(requireAuth);
 
 router.get("/", getWorkouts);
 
