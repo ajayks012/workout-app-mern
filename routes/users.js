@@ -9,6 +9,8 @@ const router = require("express").Router();
 const {
   loginUser,
   signupUser,
+  logoutUser,
+  refreshUser,
 } = require("../controller/workoutUserController");
 
 // router.get("/", getUsers);
@@ -23,5 +25,7 @@ const {
 
 router.post("/login", loginUser);
 router.post("/signup", signupUser);
+router.post("/logout", logoutUser);
+router.get("/refresh", refreshUser);
 
 module.exports = router;

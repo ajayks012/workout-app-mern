@@ -2,15 +2,17 @@ const jwt = require("jsonwebtoken");
 const userModal = require("../models/workoutUserModel");
 
 const requireAuth = async (req, res, next) => {
-  const { authorzation } = req.headers;
+  const { authorization } = req.headers;
+  console.log(authorization);
+  // console.log(req.headers);
 
-  if (!authorzation) {
+  if (!authorization) {
     return res.status(401).json("Auth token required");
   }
 
-  const token = authorzation.split(" ")[1];
+  const token = authorization.split(" ")[1];
   try {
-    const { _id } = jwt.verify(token, process.env.secret);
+    const { _id } = jwt.verify(token, process.env.ACCESS_SECRET);
     req.user = await userModal.findOne({ _id }).select("_id");
     next();
   } catch (err) {

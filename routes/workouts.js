@@ -1,23 +1,27 @@
 const router = require("express").Router();
 const {
-  createWorkout,
+  // createWorkout,
   getWorkout,
   workoutByDate,
   deleteWorkout,
   updateWorkout,
-  getWorkouts,
+  // getWorkouts,
 } = require("../controller/workoutController");
 const requireAuth = require("../middleware/requireAuth");
+const {
+  getWorkouts,
+  createWorkout,
+} = require("../controller/newWorkoutController");
 
 router.use(requireAuth);
 
-router.get("/", getWorkouts);
+// router.get("/", getWorkouts);
 
 router.get("/filter", workoutByDate);
 
-router.get("/:id", getWorkout);
+router.get("/", getWorkouts);
 
-router.post("/", createWorkout);
+router.post("/create", createWorkout);
 
 router.delete("/:id", deleteWorkout);
 

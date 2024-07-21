@@ -6,19 +6,27 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const app = express();
+const cookieParser = require("cookie-parser");
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000", // Allow requests from this origin
+    credentials: true, // Allow sending cookies with requests
+  })
+);
 
 app.use(express.json());
+
+app.use(cookieParser());
 
 app.use((req, res, next) => {
   console.log(req.method, req.path);
   next();
 });
 
-app.use("/", userRoutes);
+app.use("/auth", userRoutes);
 
-app.use("/workouts", workoutRoutes);
+app.use("/workout", workoutRoutes);
 
 mongoose
   .connect(process.env.MONGO_URL)
