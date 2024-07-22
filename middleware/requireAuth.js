@@ -3,8 +3,6 @@ const userModal = require("../models/workoutUserModel");
 
 const requireAuth = async (req, res, next) => {
   const { authorization } = req.headers;
-  console.log(authorization);
-  // console.log(req.headers);
 
   if (!authorization) {
     return res.status(401).json("Auth token required");

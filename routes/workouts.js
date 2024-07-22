@@ -19,7 +19,7 @@ router.use(requireAuth);
 
 router.get("/filter", workoutByDate);
 
-router.get("/", getWorkouts);
+router.get("/:userId", getWorkouts);
 
 router.post("/create", createWorkout);
 

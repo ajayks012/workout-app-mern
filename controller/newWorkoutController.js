@@ -4,13 +4,14 @@ const dateFormatter = require("../util/functions");
 
 // GET all workouts
 const getWorkouts = async (req, res) => {
-  const { userId } = req.body;
+  const { userId } = req.params;
+  const date = req.query.date ? req.query.date : dateFormatter(new Date());
+
+  console.log(date);
+
   try {
-    const response = await workoutModel.find({ userId });
-    const workouts = response.map((work) => {
-      return work.workouts;
-    });
-    res.status(200).json(workouts);
+    const workoutObj = await workoutModel.findOne({ userId, date });
+    res.status(200).json(workoutObj?.workouts || []);
   } catch (err) {
     console.log(err);
     res.status(400).json({ error: err.message });
