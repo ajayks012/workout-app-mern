@@ -3,12 +3,12 @@ const {
   // createWorkout,
   getWorkout,
   workoutByDate,
-  deleteWorkout,
   updateWorkout,
   // getWorkouts,
 } = require("../controller/workoutController");
 const requireAuth = require("../middleware/requireAuth");
 const {
+  deleteWorkout,
   getWorkouts,
   createWorkout,
 } = require("../controller/newWorkoutController");
@@ -23,7 +23,7 @@ router.get("/:userId", getWorkouts);
 
 router.post("/create", createWorkout);
 
-router.delete("/:id", deleteWorkout);
+router.delete("/:workoutId", deleteWorkout);
 
 router.put("/:id", updateWorkout);
 
